@@ -24,7 +24,7 @@ After completing the above steps, feel free to begin updating this readme where 
 
 ### Student First & Last Name
 
-Hello my name is [enter name]. I am a student from [where are you from?]. The purpose of this repository is to practice development using version control. This work will help me begin to build a portfolio of skills and accomplishment that can be shared in the future.
+Hello my name is Jamar. I am a student from Full Sail University. The purpose of this repository is to practice development using version control. This work will help me begin to build a portfolio of skills and accomplishment that can be shared in the future.
 
 <br>
 
@@ -44,7 +44,33 @@ Each week I will summarize my milestone activity and progress by writing a stand
 
 ### Week 1
 
-Replace this paragraph with your stand up for this week. Use the prompts above to summarize your most recent milestone activity and work.
+⚙️ Overview - What I worked on this past week
+
+Initialized version control using Git and GitHub Classroom for my C++ project.
+
+Created structured technical documentation using Markdown syntax, setting up a comprehensive project README.md.
+
+Set up the foundation for my project codebase, organizing source files, header files, and build assets.
+
+🌵 Challenges - What problems did I have & how I'm addressing them
+
+Challenge: Ensuring proper repository structure and managing Git remote links accurately during initial setup.
+
+Resolution: Reviewed Git workflow commands (git status, git commit, git push) and utilized branching/pull requests to track changes cleanly.
+
+🏆 Accomplishments - What is something I "leveled up" on this week
+
+Mastered writing clean Markdown syntax to format technical documentation, including code blocks, key specs, and project layout.
+
+Established a solid, reproducible version control habit early in the development lifecycle.
+
+🔮 Next Steps - What I plan to prioritize and do next
+
+Build out core C++ class architecture and method definitions.
+
+Implement memory management and core data handling routines.
+
+Continue making atomic Git commits as new functionality is implemented.
 
 ### Week 2
 
