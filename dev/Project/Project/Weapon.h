@@ -5,21 +5,21 @@
 
 class Weapon {
 private:
-    std::string name;
-    std::string category;
+    std::string weaponName;
+    std::string type;
     int cost;
-    int baseDamage;
+    int damage;
 
 public:
-    Weapon(const std::string& weaponName, const std::string& weaponCategory, int weaponCost, int damage);
+    Weapon(std::string name, std::string wType, int wCost, int wDmg);
 
-    // Getters
+    // Getters for weapon info
     std::string GetName() const;
-    std::string GetCategory() const;
+    std::string GetType() const;
     int GetCost() const;
-    int GetBaseDamage() const;
+    int GetDamage() const;
 
-    void DisplaySpecs() const;
+    void PrintWeaponInfo() const;
 };
 
 #endif

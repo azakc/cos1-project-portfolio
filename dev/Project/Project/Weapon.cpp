@@ -1,15 +1,19 @@
 #include "Weapon.h"
 #include <iostream>
 
-Weapon::Weapon(const std::string& weaponName, const std::string& weaponCategory, int weaponCost, int damage)
-    : name(weaponName), category(weaponCategory), cost(weaponCost), baseDamage(damage) {
+// Constructor setting up the weapon stats
+Weapon::Weapon(std::string name, std::string wType, int wCost, int wDmg) {
+    weaponName = name;
+    type = wType;
+    cost = wCost;
+    damage = wDmg;
 }
 
-std::string Weapon::GetName() const { return name; }
-std::string Weapon::GetCategory() const { return category; }
+std::string Weapon::GetName() const { return weaponName; }
+std::string Weapon::GetType() const { return type; }
 int Weapon::GetCost() const { return cost; }
-int Weapon::GetBaseDamage() const { return baseDamage; }
+int Weapon::GetDamage() const { return damage; }
 
-void Weapon::DisplaySpecs() const {
-    std::cout << "  - " << name << " [" << category << "] | Cost: " << cost << " Creds | Damage: " << baseDamage << "\n";
+void Weapon::PrintWeaponInfo() const {
+    std::cout << weaponName << " (" << type << ") - Cost: $" << cost << " | Dmg: " << damage << "\n";
 }
