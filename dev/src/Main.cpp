@@ -1,8 +1,7 @@
-// Custom Garage & Pit Service Manager Project
-
 #include <iostream>
 #include <string>
 #include "GarageManager.h"
+#include "System.h"
 
 int main() {
     GarageManager myShop;
@@ -14,9 +13,9 @@ int main() {
     int choice = 0;
 
     while (choice != 4) {
-        std::cout << "\n===============================\n";
-        std::cout << "     GARAGE SERVICE TERMINAL   \n";
-        std::cout << "===============================\n";
+        System::ClearScreen();
+        System::PrintHeader("PIT CREW & SERVICE SHOP");
+
         std::cout << "1. Add Car to Service Bay\n";
         std::cout << "2. View Garage Bays & Specs\n";
         std::cout << "3. Install Part Upgrade\n";
@@ -28,6 +27,7 @@ int main() {
             std::cin.clear();
             std::cin.ignore(100, '\n');
             std::cout << "\nInvalid input. Enter a number 1-4.\n";
+            System::Pause();
             continue;
         }
 
@@ -43,13 +43,16 @@ int main() {
             std::cin >> horsepower;
 
             myShop.AddCar(modelName, horsepower);
+            System::Pause();
         }
         else if (choice == 2) {
             myShop.DisplayGarage();
+            System::Pause();
         }
         else if (choice == 3) {
             if (myShop.GetGarageSize() == 0) {
                 std::cout << "\nNo cars available to upgrade!\n";
+                System::Pause();
                 continue;
             }
 
@@ -65,12 +68,14 @@ int main() {
 
             // Subtract 1 to match 0-based vector indexing
             myShop.InstallUpgrade(selectedBay - 1, selectedPart - 1);
+            System::Pause();
         }
         else if (choice == 4) {
             std::cout << "\nExiting shop terminal...\n";
         }
         else {
             std::cout << "\nInvalid choice. Please pick 1 through 4.\n";
+            System::Pause();
         }
     }
 
