@@ -140,16 +140,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\System.cpp" />
-    <ClCompile Include="Agent.cpp" />
-    <ClCompile Include="LoadoutManager.cpp" />
+    <ClCompile Include="Car.cpp" />
+    <ClCompile Include="Part.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Weapon.cpp" />
+    <ClCompile Include="GarageManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\System.h" />
-    <ClInclude Include="GameManager.h" />
-    <ClInclude Include="Operator.h" />
-    <ClInclude Include="Weapon.h" />
+    <ClInclude Include="Car.h" />
+    <ClInclude Include="Part.h" />
+    <ClInclude Include="GarageManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,78 +1,76 @@
+// Custom Garage & Pit Service Manager Project
+
 #include <iostream>
 #include <string>
-#include <limits>
-#include "LoadoutManager.h"
-
-void DisplayMenu() {
-    std::cout << "\n========== VALORANT TAC-GEAR MANAGER ==========\n";
-    std::cout << "1. Recruit New Agent\n";
-    std::cout << "2. View Agent Roster & Loadouts\n";
-    std::cout << "3. Purchase/Equip Weapon from Buy Menu\n";
-    std::cout << "4. Exit Program\n";
-    std::cout << "Select an option (1-4): ";
-}
+#include "GarageManager.h"
 
 int main() {
-    LoadoutManager manager;
+    GarageManager myShop;
 
-    // Default starter agents
-    manager.AddAgent("Jett", "Duelist", "Blade Storm");
-    manager.AddAgent("Sova", "Initiator", "Hunter's Fury");
+    // Default starting cars in the shop
+    myShop.AddCar("Nissan GT-R", 565);
+    myShop.AddCar("Porsche 911 GT3", 502);
 
     int choice = 0;
+
     while (choice != 4) {
-        DisplayMenu();
+        std::cout << "\n===============================\n";
+        std::cout << "     GARAGE SERVICE TERMINAL   \n";
+        std::cout << "===============================\n";
+        std::cout << "1. Add Car to Service Bay\n";
+        std::cout << "2. View Garage Bays & Specs\n";
+        std::cout << "3. Install Part Upgrade\n";
+        std::cout << "4. Exit\n";
+        std::cout << "Choice: ";
+
+        // Basic input check for invalid non-number entries
         if (!(std::cin >> choice)) {
             std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            std::cout << "\nInvalid input. Please enter a number.\n";
+            std::cin.ignore(100, '\n');
+            std::cout << "\nInvalid input. Enter a number 1-4.\n";
             continue;
         }
 
-        switch (choice) {
-        case 1: {
-            std::string name, role, ult;
-            std::cout << "\nEnter Agent Name: ";
-            std::cin >> name;
-            std::cout << "Enter Agent Role (Duelist/Initiator/Controller/Sentinel): ";
-            std::cin >> role;
-            std::cout << "Enter Ultimate Ability Name: ";
+        if (choice == 1) {
+            std::string modelName;
+            int horsepower;
+
+            std::cout << "\nEnter car model: ";
             std::cin.ignore();
-            std::getline(std::cin, ult);
+            std::getline(std::cin, modelName);
 
-            manager.AddAgent(name, role, ult);
-            break;
+            std::cout << "Enter base horsepower: ";
+            std::cin >> horsepower;
+
+            myShop.AddCar(modelName, horsepower);
         }
-        case 2:
-            manager.ShowRoster();
-            break;
-
-        case 3: {
-            if (manager.GetRosterSize() == 0) {
-                std::cout << "\nRecruit an agent first!\n";
-                break;
+        else if (choice == 2) {
+            myShop.DisplayGarage();
+        }
+        else if (choice == 3) {
+            if (myShop.GetGarageSize() == 0) {
+                std::cout << "\nNo cars available to upgrade!\n";
+                continue;
             }
 
-            manager.ShowRoster();
-            std::cout << "Select Agent Number to equip: ";
-            int agentChoice;
-            std::cin >> agentChoice;
+            myShop.DisplayGarage();
+            std::cout << "\nSelect Bay Number: ";
+            int selectedBay;
+            std::cin >> selectedBay;
 
-            manager.ShowBuyMenu();
-            std::cout << "Select Weapon Number to buy: ";
-            int weaponChoice;
-            std::cin >> weaponChoice;
+            myShop.DisplayShop();
+            std::cout << "\nSelect Part Number: ";
+            int selectedPart;
+            std::cin >> selectedPart;
 
-            manager.EquipAgentWeapon(agentChoice - 1, weaponChoice - 1);
-            break;
+            // Subtract 1 to match 0-based vector indexing
+            myShop.InstallUpgrade(selectedBay - 1, selectedPart - 1);
         }
-        case 4:
-            std::cout << "\nExiting Valorant Tac-Gear Manager. Good luck on the field!\n";
-            break;
-
-        default:
-            std::cout << "\nInvalid option selected. Try again.\n";
-            break;
+        else if (choice == 4) {
+            std::cout << "\nExiting shop terminal...\n";
+        }
+        else {
+            std::cout << "\nInvalid choice. Please pick 1 through 4.\n";
         }
     }
 
