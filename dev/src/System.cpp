@@ -1,14 +1,19 @@
-#ifndef SYSTEM_H
-#define SYSTEM_H
+#include "System.h"
+#include <iostream>
+#include <cstdlib>
 
-#include <string>
+void System::ClearScreen() {
+    system("cls");
+}
 
-class System {
-public:
-    // Utility functions for terminal formatting
-    static void ClearScreen();
-    static void PrintHeader(std::string title);
-    static void Pause();
-};
+void System::PrintHeader(std::string title) {
+    std::cout << "========================================" << std::endl;
+    std::cout << "  " << title << std::endl;
+    std::cout << "========================================" << std::endl;
+}
 
-#endif
+void System::Pause() {
+    std::cout << "\nPress Enter to continue...";
+    std::cin.ignore(10000, '\n');
+    std::cin.get();
+}
