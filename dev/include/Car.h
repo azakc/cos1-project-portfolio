@@ -1,8 +1,9 @@
-#ifndef CAR_H
-#define CAR_H
+#pragma once
 
 #include <string>
-#include "Part.h"
+
+// Forward declaration allows storing a Part* pointer without including Part.h here
+class Part;
 
 // Class representing a vehicle in the garage
 class Car {
@@ -12,13 +13,11 @@ private:
     Part* installedPart; // Dynamic memory pointer for installed upgrade
 
 public:
-    Car(std::string model, int hp);
+    Car(const std::string& model, int hp);
     ~Car(); // Destructor to clear dynamic memory
 
     void InstallPart(Part* newPart);
-    void PrintSpecs();
+    void PrintSpecs() const;
 
-    std::string GetModel();
+    std::string GetModel() const;
 };
-
-#endif

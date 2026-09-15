@@ -1,5 +1,4 @@
-#ifndef PART_H
-#define PART_H
+#pragma once
 
 #include <string>
 
@@ -13,15 +12,13 @@ private:
 
 public:
     Part();
-    Part(std::string name, std::string cat, int pCost, int hp);
+    Part(const std::string& name, const std::string& cat, int pCost, int hp);
 
     // Getters
-    std::string GetName();
-    std::string GetCategory();
-    int GetCost();
-    int GetHP();
+    std::string GetName() const;
+    std::string GetCategory() const;
+    int GetCost() const;
+    int GetHP() const;
 
-    void DisplayPart();
+    void DisplayPart() const;
 };
-
-#endif

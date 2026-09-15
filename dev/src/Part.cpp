@@ -1,25 +1,33 @@
 #include "Part.h"
 #include <iostream>
 
-Part::Part() {
-    partName = "Stock";
-    category = "Factory";
-    cost = 0;
-    horsepowerGain = 0;
+Part::Part()
+    : partName(""), category(""), cost(0), horsepowerGain(0) {
 }
 
-Part::Part(std::string name, std::string cat, int pCost, int hp) {
-    partName = name;
-    category = cat;
-    cost = pCost;
-    horsepowerGain = hp;
+Part::Part(const std::string& name, const std::string& cat, int pCost, int hp)
+    : partName(name), category(cat), cost(pCost), horsepowerGain(hp) {
 }
 
-std::string Part::GetName() { return partName; }
-std::string Part::GetCategory() { return category; }
-int Part::GetCost() { return cost; }
-int Part::GetHP() { return horsepowerGain; }
+std::string Part::GetName() const {
+    return partName;
+}
 
-void Part::DisplayPart() {
-    std::cout << partName << " [" << category << "] - $" << cost << " (+ " << horsepowerGain << " HP)\n";
+std::string Part::GetCategory() const {
+    return category;
+}
+
+int Part::GetCost() const {
+    return cost;
+}
+
+int Part::GetHP() const {
+    return horsepowerGain;
+}
+
+void Part::DisplayPart() const {
+    std::cout << "Part: " << partName
+        << " | Category: " << category
+        << " | Cost: $" << cost
+        << " | HP Gain: +" << horsepowerGain << " HP\n";
 }

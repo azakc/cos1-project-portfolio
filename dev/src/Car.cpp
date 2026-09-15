@@ -1,50 +1,35 @@
 #include "Car.h"
+#include "Part.h" // Full definition included here for method calls and dynamic memory access
 #include <iostream>
 
-Car::Car(std::string model, int hp) {
-    makeModel = model;
-    baseHP = hp;
-    installedPart = nullptr; // Starts stock with no aftermarket parts
+Car::Car(const std::string& model, int hp)
+    : makeModel(model), baseHP(hp), installedPart(nullptr) {
 }
 
 Car::~Car() {
-    // Clean up dynamic memory allocation to prevent memory leaks
-    if (installedPart != nullptr) {
-        delete installedPart;
-        installedPart = nullptr;
-    }
+    delete installedPart;
+    installedPart = nullptr;
 }
 
 void Car::InstallPart(Part* newPart) {
-    // Clear old installed part before adding a new dynamic one
     if (installedPart != nullptr) {
-        delete installedPart;
+        delete installedPart; // Clean up old memory before reassigning
     }
-
-    // Dynamic allocation using heap memory
-    installedPart = new Part(newPart->GetName(), newPart->GetCategory(), newPart->GetCost(), newPart->GetHP());
+    installedPart = newPart;
 }
 
-void Car::PrintSpecs() {
-    int totalHP = baseHP;
-    if (installedPart != nullptr) {
-        totalHP += installedPart->GetHP();
-    }
-
-    std::cout << "\n-----------------------------------\n";
+void Car::PrintSpecs() const {
     std::cout << "Vehicle: " << makeModel << "\n";
-    std::cout << "Base HP: " << baseHP << " | Total HP: " << totalHP << "\n";
-    std::cout << "Installed Upgrade: ";
-
+    std::cout << "Base HP: " << baseHP << "\n";
     if (installedPart != nullptr) {
+        std::cout << "Installed Upgrade:\n  ";
         installedPart->DisplayPart();
     }
     else {
-        std::cout << "Stock / Factory Default\n";
+        std::cout << "No performance part installed.\n";
     }
-    std::cout << "-----------------------------------\n";
 }
 
-std::string Car::GetModel() {
+std::string Car::GetModel() const {
     return makeModel;
 }
