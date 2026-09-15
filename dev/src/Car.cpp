@@ -1,5 +1,5 @@
 #include "Car.h"
-#include "Part.h" // Full definition included here for method calls and dynamic memory access
+#include "Part.h"
 #include <iostream>
 
 Car::Car(const std::string& model, int hp)

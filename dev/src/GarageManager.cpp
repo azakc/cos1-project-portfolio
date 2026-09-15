@@ -1,72 +1,70 @@
 #include "GarageManager.h"
+#include "Car.h" 
 #include <iostream>
 
 GarageManager::GarageManager() {
-    // shop items available for install
-    Part p1("ECU Tune", "Software", 600, 40);
-    Part p2("High Flow Injectors", "Fuel", 450, 20);
-    Part p3("Supercharger", "Engine", 5000, 150);
-
-    shopParts.push_back(p1);
-    shopParts.push_back(p2);
-    shopParts.push_back(p3);
 }
 
 GarageManager::~GarageManager() {
-    // delete all dynamically allocated cars in the vector
-    for (int i = 0; i < bays.size(); i++) {
-        delete bays[i];
+    for (Car* car : bays) {
+        delete car;
     }
+    bays.clear();
 }
 
-void GarageManager::AddCar(std::string model, int hp) {
-    Car* temp = new Car(model, hp);
-    bays.push_back(temp);
-    std::cout << "\nAdded car to Bay " << bays.size() << "!\n";
+void GarageManager::AddCar(const std::string& model, int hp) {
+    bays.push_back(new Car(model, hp));
 }
 
-void GarageManager::DisplayGarage() {
-    if (bays.size() == 0) {
-        std::cout << "\nNo cars in service bays.\n";
+void GarageManager::DisplayGarage() const {
+    if (bays.empty()) {
+        std::cout << "No vehicles currently in service bays.\n";
         return;
     }
 
-    for (int i = 0; i < bays.size(); i++) {
-        std::cout << "\nBay " << (i + 1) << ":";
+    for (size_t i = 0; i < bays.size(); ++i) {
+        std::cout << "Bay [" << i + 1 << "]:\n";
         bays[i]->PrintSpecs();
+        std::cout << "-----------------------\n";
     }
 }
 
-void GarageManager::DisplayShop() {
-    std::cout << "\nShop Parts:\n";
-    for (int i = 0; i < shopParts.size(); i++) {
-        std::cout << (i + 1) << ". ";
+void GarageManager::DisplayShop() const {
+    if (shopParts.empty()) {
+        std::cout << "No shop parts available.\n";
+        return;
+    }
+
+    for (size_t i = 0; i < shopParts.size(); ++i) {
+        std::cout << "[" << i + 1 << "] ";
         shopParts[i].DisplayPart();
     }
 }
 
 void GarageManager::InstallUpgrade(int bayChoice, int partChoice) {
-    // check bay choice
-    if (bayChoice < 0 || bayChoice >= bays.size()) {
-        std::cout << "\nInvalid bay number.\n";
+    int bayIndex = bayChoice - 1;
+    int partIndex = partChoice - 1;
+
+    if (bayIndex < 0 || bayIndex >= static_cast<int>(bays.size())) {
+        std::cout << "Invalid bay selection.\n";
         return;
     }
 
-    // check part choice
-    if (partChoice < 0 || partChoice >= shopParts.size()) {
-        std::cout << "\nInvalid part number.\n";
+    if (partIndex < 0 || partIndex >= static_cast<int>(shopParts.size())) {
+        std::cout << "Invalid part selection.\n";
         return;
     }
 
-    // apply the upgrade
-    bays[bayChoice]->InstallPart(&shopParts[partChoice]);
-    std::cout << "\nPart successfully added!\n";
+    // Allocate a heap copy of the selected part and install it
+    Part* newPart = new Part(shopParts[partIndex]);
+    bays[bayIndex]->InstallPart(newPart);
+    std::cout << "Part successfully installed!\n";
 }
 
-int GarageManager::GetGarageSize() {
-    return bays.size();
+int GarageManager::GetGarageSize() const {
+    return static_cast<int>(bays.size());
 }
 
-int GarageManager::GetShopSize() {
-    return shopParts.size();
+int GarageManager::GetShopSize() const {
+    return static_cast<int>(shopParts.size());
 }

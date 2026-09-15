@@ -25,7 +25,7 @@ int main() {
         // Basic input check for invalid non-number entries
         if (!(std::cin >> choice)) {
             std::cin.clear();
-            std::cin.ignore(1000, '\n');
+            std::cin.ignore(100, '\n');
             std::cout << "\nInvalid input. Enter a number 1-4.\n";
             System::Pause();
             continue;
@@ -36,7 +36,7 @@ int main() {
             int horsepower;
 
             std::cout << "\nEnter car model: ";
-            std::cin.ignore(1000, '\n'); // Clear trailing newline from menu selection
+            std::cin.ignore();
             std::getline(std::cin, modelName);
 
             std::cout << "Enter base horsepower: ";
@@ -66,8 +66,8 @@ int main() {
             int selectedPart;
             std::cin >> selectedPart;
 
-            // Pass 1-based choices directly; GarageManager converts them to 0-based indexing
-            myShop.InstallUpgrade(selectedBay, selectedPart);
+            // Subtract 1 to match 0-based vector indexing
+            myShop.InstallUpgrade(selectedBay - 1, selectedPart - 1);
             System::Pause();
         }
         else if (choice == 4) {

@@ -1,9 +1,11 @@
-#ifndef GARAGEMANAGER_H
-#define GARAGEMANAGER_H
+#pragma once
 
 #include <vector>
-#include "Car.h"
-#include "Part.h"
+#include <string>
+#include "Part.h" 
+
+// Forward declaration avoids heavy header coupling since bays stores pointers (Car*)
+class Car;
 
 class GarageManager {
 private:
@@ -14,13 +16,11 @@ public:
     GarageManager();
     ~GarageManager();
 
-    void AddCar(std::string model, int hp);
-    void DisplayGarage();
-    void DisplayShop();
+    void AddCar(const std::string& model, int hp);
+    void DisplayGarage() const;
+    void DisplayShop() const;
     void InstallUpgrade(int bayChoice, int partChoice);
 
-    int GetGarageSize();
-    int GetShopSize();
+    int GetGarageSize() const;
+    int GetShopSize() const;
 };
-
-#endif
