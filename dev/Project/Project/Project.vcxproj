@@ -111,6 +111,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -139,8 +140,17 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\Car.cpp" />
+    <ClCompile Include="..\..\src\GarageManager.cpp" />
+    <ClCompile Include="..\..\src\Main.cpp" />
+    <ClCompile Include="..\..\src\Part.cpp" />
     <ClCompile Include="..\..\src\System.cpp" />
-    <ClCompile Include="Project.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\include\Car.h" />
+    <ClInclude Include="..\..\include\GarageManager.h" />
+    <ClInclude Include="..\..\include\Part.h" />
+    <ClInclude Include="..\..\include\System.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\System.h" />
