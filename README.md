@@ -74,7 +74,29 @@ Continue making atomic Git commits as new functionality is implemented.
 
 ### Week 2
 
-My next stand up will go here...
+### Week 2 Standup Update
+
+⚙️ **Overview - What I worked on this past week**
+
+* Implemented core C++ project architecture across custom header files (`Car.h`, `GarageManager.h`, `Part.h`, `System.h`) and corresponding source files.
+* Built out utility functions in `System.cpp` for console interface management, including UI header formatting (`PrintHeader`), screen clearing (`ClearScreen`), and input pausing (`Pause`).
+* Connected main project logic and module definitions within Visual Studio, maintaining organized separation between declarations and implementations.
+
+🌵 **Challenges - What problems did I have & how I'm addressing them**
+
+* **Challenge:** Handling console input stream buffering and ensuring reliable cross-platform screen clearing/pausing without leftover newline artifacts breaking input flow.
+* **Resolution:** Standardized input stream flushing using `std::cin.ignore()` alongside `std::cin.get()` to cleanly manage user transitions.
+
+🏆 **Accomplishments - What is something I "leveled up" on this week**
+
+* Advanced my understanding of standard class separation and modular program structure in C++.
+* Streamlined terminal UI workflows and input handling strategies within complex console-based applications.
+
+🔮 **Next Steps - What I plan to prioritize and do next**
+
+* Flesh out core data structures and logic inside `GarageManager.cpp`, `Car.cpp`, and `Part.cpp`.
+* Implement state management and main menu loops in `Main.cpp` to tie all system utility helper methods together.
+* Continue pushing structured, atomic commits to track modular feature implementations cleanly.
 
 ### Week 3
 
