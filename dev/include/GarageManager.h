@@ -2,9 +2,8 @@
 
 #include <vector>
 #include <string>
-#include "Part.h" 
+#include "Part.h"
 
-// Forward declaration avoids heavy header coupling since bays stores pointers (Car*)
 class Car;
 
 class GarageManager {
@@ -16,6 +15,7 @@ public:
     GarageManager();
     ~GarageManager();
 
+    // Core Garage Functionality
     void AddCar(const std::string& model, int hp);
     void DisplayGarage() const;
     void DisplayShop() const;
@@ -23,4 +23,8 @@ public:
 
     int GetGarageSize() const;
     int GetShopSize() const;
+
+    // Search Routines
+    Car* FindCarById(int id) const;
+    std::vector<Car*> FindCarsByModel(const std::string& modelQuery) const;
 };

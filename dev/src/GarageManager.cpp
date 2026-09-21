@@ -1,5 +1,5 @@
 #include "GarageManager.h"
-#include "Car.h" 
+#include "Car.h"
 #include <iostream>
 
 GarageManager::GarageManager() {
@@ -67,4 +67,27 @@ int GarageManager::GetGarageSize() const {
 
 int GarageManager::GetShopSize() const {
     return static_cast<int>(shopParts.size());
+}
+
+// --- Search Functions ---
+
+Car* GarageManager::FindCarById(int id) const {
+    // Check if the id corresponds to a valid 1-based bay index
+    int index = id - 1;
+    if (index >= 0 && index < static_cast<int>(bays.size())) {
+        return bays[index];
+    }
+    return nullptr;
+}
+
+std::vector<Car*> GarageManager::FindCarsByModel(const std::string& modelQuery) const {
+    std::vector<Car*> results;
+    for (Car* car : bays) {
+        if (car != nullptr) {
+            if (car->GetModel().find(modelQuery) != std::string::npos) {
+                results.push_back(car);
+            }
+        }
+    }
+    return results;
 }
