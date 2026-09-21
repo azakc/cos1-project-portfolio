@@ -100,8 +100,32 @@ Continue making atomic Git commits as new functionality is implemented.
 
 ### Week 3
 
-Stay tuned, this stand up is coming soon...
+⚙️ **Overview - What I worked on this past week**
+
+* Implemented the core execution loop and interactive menu navigation in `Main.cpp` using `System` console utilities.
+* Built out search member functions (`FindCarById` and `FindCarsByModel`) in `GarageManager.cpp` to filter vehicle inventory.
+* Resolved build configuration breaks in Visual Studio and updated local Git tracking against remote feature branches.
+
+🛠️ **Improvements - What changes, refinements, or refactoring did I complete this week**
+
+* Standardized input stream buffer clearing across menu selections using `std::cin.ignore()` and `std::cin.clear()` to prevent input skip bugs.
+* Cleaned up project file metadata (`.vcxproj` and `.vcxproj.filters`) by removing duplicate header dependencies causing load failures.
+
+🌵 **Challenges - What problems did I have & how I'm addressing them**
+
+* **Challenge:** Visual Studio failing to load the project file due to duplicate XML filter entries (`System.h`) and running Git commands outside the repo root directory.
+* **Resolution:** Manually edited `Project.vcxproj` to strip duplicate `<ClInclude>` declarations and verified active PowerShell paths before executing version control commands.
+
+🏆 **Accomplishments - What is something I "leveled up" on this week**
+
+* Gained direct experience manually repairing broken C++ project configuration files and managing branch merges in Git.
+* Improved menu state control flow and input validation techniques in C++ console applications.
+
+🔮 **Next Steps - What I plan to prioritize and do next**
+
+* Test edge cases across interactive menu inputs and service bay vehicle search routines.
+* Finalize documentation and issue references before submitting Week 4 pull requests.
 
 ### Week 4
 
-My final stand up...
+My final stand-up...
