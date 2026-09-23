@@ -1,8 +1,14 @@
 #include "GarageManager.h"
 #include "Car.h"
+#include "Part.h"
 #include <iostream>
 
 GarageManager::GarageManager() {
+    // Populate initial shop inventory
+    shopParts.push_back(Part("Cold Air Intake", "Intake", 250, 15));
+    shopParts.push_back(Part("Turbocharger Kit", "Forced Induction", 1200, 75));
+    shopParts.push_back(Part("ECU Stage 1 Tune", "Engine Tuning", 450, 30));
+    shopParts.push_back(Part("Performance Exhaust", "Exhaust", 600, 20));
 }
 
 GarageManager::~GarageManager() {
@@ -25,7 +31,7 @@ void GarageManager::DisplayGarage() const {
     for (size_t i = 0; i < bays.size(); ++i) {
         std::cout << "Bay [" << i + 1 << "]:\n";
         bays[i]->PrintSpecs();
-        std::cout << "-----------------------\n";
+        std::cout << "-------------------------\n";
     }
 }
 
