@@ -60,6 +60,7 @@ void GarageManager::InstallUpgrade(int bayChoice, int partChoice) {
     int bayIndex = bayChoice - 1;
     int partIndex = partChoice - 1;
 
+    // Index validation
     if (bayIndex < 0 || bayIndex >= static_cast<int>(bays.size())) {
         std::cout << "Invalid bay selection.\n";
         return;
@@ -70,9 +71,10 @@ void GarageManager::InstallUpgrade(int bayChoice, int partChoice) {
         return;
     }
 
-    // Allocate a heap copy of the selected part and install it
+    // Allocate copy of selected part and attach to car
     Part* newPart = new Part(shopParts[partIndex]);
     bays[bayIndex]->InstallPart(newPart);
+
     std::cout << "Part successfully installed!\n";
 }
 
