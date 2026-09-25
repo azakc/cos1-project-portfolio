@@ -19,6 +19,11 @@ GarageManager::~GarageManager() {
 }
 
 void GarageManager::AddCar(const std::string& model, int hp) {
+    if (bays.size() >= MAX_BAYS) {
+        std::cout << "Garage Full! Cannot add another car.\n";
+        return;
+    }
+
     bays.push_back(new Car(model, hp));
 }
 

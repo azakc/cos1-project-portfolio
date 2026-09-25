@@ -10,6 +10,9 @@ class GarageManager {
 private:
     std::vector<Car*> bays;
     std::vector<Part> shopParts;
+    static constexpr size_t MAX_BAYS = 5; // Set desired capacity cap
+    std::vector<Car*> bays;
+    std::vector<Part> shopParts;
 
 public:
     GarageManager();
@@ -27,4 +30,6 @@ public:
     // Search Routines
     Car* FindCarById(int id) const;
     std::vector<Car*> FindCarsByModel(const std::string& modelQuery) const;
+
+    bool IsGarageFull() const;
 };
