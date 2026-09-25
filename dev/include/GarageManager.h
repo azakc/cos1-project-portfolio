@@ -29,4 +29,5 @@ public:
     std::vector<Car*> FindCarsByModel(const std::string& modelQuery) const;
 
     bool IsGarageFull() const;
+    bool CheckoutCar(int bayIndex);
 };

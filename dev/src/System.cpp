@@ -48,3 +48,24 @@ void HandleInstallUpgrade(GarageManager& manager) {
     // 4. Apply the upgrade directly via GarageManager
     manager.InstallUpgrade(bayChoice, partChoice);
 }
+
+void HandleCheckoutCar(GarageManager& manager) {
+    if (manager.GetGarageSize() == 0) {
+        std::cout << "\nNo cars currently in service bays to checkout.\n";
+        return;
+    }
+
+    std::cout << "\n--- Checkout Vehicle ---\n";
+    manager.DisplayGarage();
+
+    std::cout << "Enter Bay Number to checkout (1-" << manager.GetGarageSize() << "): ";
+    int bayChoice;
+    if (std::cin >> bayChoice) {
+        manager.CheckoutCar(bayChoice);
+    }
+    else {
+        std::cin.clear();
+        std::cin.ignore(10000, '\n');
+        std::cout << "\nInvalid input.\n";
+    }
+}

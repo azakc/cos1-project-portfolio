@@ -40,7 +40,7 @@ void GarageManager::DisplayGarage() const {
     for (size_t i = 0; i < bays.size(); ++i) {
         std::cout << "Bay [" << i + 1 << "]:\n";
         bays[i]->PrintSpecs();
-        std::cout << "-------------------------\n";
+        std::cout << "-----------------------------------\n";
     }
 }
 
@@ -51,86 +51,25 @@ void GarageManager::DisplayShop() const {
     }
 
     for (size_t i = 0; i < shopParts.size(); ++i) {
-        std::cout << "[" << i + 1 << "] ";
-        shopParts[i].DisplayPart();
+        std::cout << "Part [" << i + 1 << "]: "
+            << shopParts[i].GetName() << " (+"
+            << shopParts[i].GetHP() << " HP) - $"
+            << shopParts[i].GetCost() << "\n";
     }
 }
 
-void GarageManager::InstallUpgrade(int bayChoice, int partChoice) {
-    int bayIndex = bayChoice - 1;
-    int partIndex = partChoice - 1;
+bool GarageManager::CheckoutCar(int bayIndex) {
+    int index = bayIndex - 1;
 
-    // Index validation
-    if (bayIndex < 0 || bayIndex >= static_cast<int>(bays.size())) {
-        std::cout << "Invalid bay selection.\n";
-        return;
+    if (index < 0 || index >= static_cast<int>(bays.size())) {
+        std::cout << "\nInvalid bay number.\n";
+        return false;
     }
 
-    if (partIndex < 0 || partIndex >= static_cast<int>(shopParts.size())) {
-        std::cout << "Invalid part selection.\n";
-        return;
-    }
+    std::cout << "\nCar checked out from Bay " << bayIndex << ".\n";
 
-    // Allocate copy of selected part and attach to car
-    Part* newPart = new Part(shopParts[partIndex]);
-    bays[bayIndex]->InstallPart(newPart);
+    delete bays[index];
+    bays.erase(bays.begin() + index);
 
-    std::cout << "Part successfully installed!\n";
-}
-
-int GarageManager::GetGarageSize() const {
-    return static_cast<int>(bays.size());
-}
-
-int GarageManager::GetShopSize() const {
-    return static_cast<int>(shopParts.size());
-}
-
-// --- Search Functions ---
-
-Car* GarageManager::FindCarById(int id) const {
-    // Check if the id corresponds to a valid 1-based bay index
-    int index = id - 1;
-    if (index >= 0 && index < static_cast<int>(bays.size())) {
-        return bays[index];
-    }
-    return nullptr;
-}
-
-std::vector<Car*> GarageManager::FindCarsByModel(const std::string& modelQuery) const {
-    std::vector<Car*> results;
-    for (Car* car : bays) {
-        if (car != nullptr) {
-            if (car->GetModel().find(modelQuery) != std::string::npos) {
-                results.push_back(car);
-            }
-        }
-    }
-    return results;
-}
-
-void GarageManager::DisplayCarDetails(int bayChoice) const {
-    int bayIndex = bayChoice - 1;
-
-    // Validate bay selection
-    if (bayIndex < 0 || bayIndex >= static_cast<int>(bays.size())) {
-        std::cout << "Invalid bay selection.\n";
-        return;
-    }
-
-    const Car* car = bays[bayIndex];
-    if (!car) {
-        std::cout << "No car found in Bay " << bayChoice << ".\n";
-        return;
-    }
-
-    std::cout << "\n========================================\n";
-    std::cout << "          CAR SPECIFICATIONS            \n";
-    std::cout << "========================================\n";
-    std::cout << "Bay Number: " << bayChoice << "\n";
-
-    // Display formatted car specs
-    car->PrintSpecs();
-
-    std::cout << "========================================\n\n";
+    return true;
 }
