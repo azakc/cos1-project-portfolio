@@ -102,3 +102,29 @@ std::vector<Car*> GarageManager::FindCarsByModel(const std::string& modelQuery) 
     }
     return results;
 }
+
+void GarageManager::DisplayCarDetails(int bayChoice) const {
+    int bayIndex = bayChoice - 1;
+
+    // Validate bay selection
+    if (bayIndex < 0 || bayIndex >= static_cast<int>(bays.size())) {
+        std::cout << "Invalid bay selection.\n";
+        return;
+    }
+
+    const Car* car = bays[bayIndex];
+    if (!car) {
+        std::cout << "No car found in Bay " << bayChoice << ".\n";
+        return;
+    }
+
+    std::cout << "\n========================================\n";
+    std::cout << "          CAR SPECIFICATIONS            \n";
+    std::cout << "========================================\n";
+    std::cout << "Bay Number: " << bayChoice << "\n";
+
+    // Display formatted car specs
+    car->PrintSpecs();
+
+    std::cout << "========================================\n\n";
+}

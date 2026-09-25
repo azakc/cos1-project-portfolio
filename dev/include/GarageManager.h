@@ -1,16 +1,12 @@
-#pragma once
-
-#include <vector>
 #include <string>
+#include <vector>
 #include "Part.h"
 
 class Car;
 
 class GarageManager {
 private:
-    std::vector<Car*> bays;
-    std::vector<Part> shopParts;
-    static constexpr size_t MAX_BAYS = 5; // Set desired capacity cap
+    static constexpr size_t MAX_BAYS = 5;
     std::vector<Car*> bays;
     std::vector<Part> shopParts;
 
@@ -23,6 +19,7 @@ public:
     void DisplayGarage() const;
     void DisplayShop() const;
     void InstallUpgrade(int bayChoice, int partChoice);
+    void DisplayCarDetails(int bayChoice) const;
 
     int GetGarageSize() const;
     int GetShopSize() const;
