@@ -7,8 +7,6 @@ class System {
 public:
     // Utility functions for terminal formatting
     static void ClearScreen();
-    static void PrintHeader(std::string title);
     static void Pause();
+    static void PrintHeader(const std::string& title);
 };
-
-#endif

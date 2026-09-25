@@ -8,10 +8,20 @@ void System::ClearScreen() {
     system("cls");
 }
 
-void System::PrintHeader(std::string title) {
-    std::cout << "========================================" << std::endl;
-    std::cout << " " << title << std::endl;
-    std::cout << "========================================" << std::endl;
+void System::PrintHeader(const std::string& title) {
+    const int totalWidth = 50;
+    std::string border(totalWidth, '=');
+
+    std::cout << "\n" << border << "\n";
+
+    // Center the title text inside the banner
+    int padding = (totalWidth - static_cast<int>(title.length())) / 2;
+    if (padding > 0) {
+        std::cout << std::string(padding, ' ');
+    }
+    std::cout << title << "\n";
+
+    std::cout << border << "\n\n";
 }
 
 void System::Pause() {

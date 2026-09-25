@@ -1,6 +1,7 @@
 #include "GarageManager.h"
 #include "Car.h"
 #include "Part.h"
+#include "System.h"
 #include <iostream>
 
 GarageManager::GarageManager() {
@@ -32,6 +33,8 @@ void GarageManager::AddCar(const std::string& model, int hp) {
 }
 
 void GarageManager::DisplayGarage() const {
+    System::PrintHeader("CURRENT GARAGE BAYS");
+
     if (bays.empty()) {
         std::cout << "No vehicles currently in service bays.\n";
         return;
@@ -40,11 +43,13 @@ void GarageManager::DisplayGarage() const {
     for (size_t i = 0; i < bays.size(); ++i) {
         std::cout << "Bay [" << i + 1 << "]:\n";
         bays[i]->PrintSpecs();
-        std::cout << "-----------------------------------\n";
+        std::cout << "----------------------------------------\n";
     }
 }
 
 void GarageManager::DisplayShop() const {
+    System::PrintHeader("PARTS & UPGRADES SHOP");
+
     if (shopParts.empty()) {
         std::cout << "No shop parts available.\n";
         return;
