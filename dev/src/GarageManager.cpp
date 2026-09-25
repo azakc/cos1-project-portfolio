@@ -4,11 +4,15 @@
 #include <iostream>
 
 GarageManager::GarageManager() {
-    // Populate initial shop inventory
-    shopParts.push_back(Part("Cold Air Intake", "Intake", 250, 15));
-    shopParts.push_back(Part("Turbocharger Kit", "Forced Induction", 1200, 75));
-    shopParts.push_back(Part("ECU Stage 1 Tune", "Engine Tuning", 450, 30));
-    shopParts.push_back(Part("Performance Exhaust", "Exhaust", 600, 20));
+    // Preset parts inventory catalog
+    shopParts = {
+        Part("Cold Air Intake", "Intake", 250, 15),
+        Part("Performance Exhaust", "Exhaust", 600, 20),
+        Part("ECU Stage 1 Tune", "Engine Tuning", 450, 30),
+        Part("Turbocharger Kit", "Forced Induction", 1200, 75),
+        Part("Supercharger System", "Forced Induction", 2500, 120),
+        Part("High-Flow Fuel Injectors", "Fuel System", 350, 25)
+    };
 }
 
 GarageManager::~GarageManager() {
