@@ -1,7 +1,36 @@
 #include <iostream>
 #include <string>
+#include <stdexcept>
 #include "GarageManager.h"
 #include "System.h"
+
+int GetValidInt(const std::string& prompt) {
+    int result = 0;
+    while (true) {
+        std::cout << prompt;
+        std::string input;
+        if (!std::getline(std::cin, input)) {
+            std::cin.clear();
+            continue;
+        }
+
+        try {
+            size_t processedChars = 0;
+            result = std::stoi(input, &processedChars);
+
+            if (processedChars == input.length()) {
+                return result;
+            }
+            std::cout << "Invalid input. Please enter a valid number.\n";
+        }
+        catch (const std::invalid_argument&) {
+            std::cout << "Invalid input. Please enter a valid numeric value.\n";
+        }
+        catch (const std::out_of_range&) {
+            std::cout << "Input out of range. Please enter a smaller number.\n";
+        }
+    }
+}
 
 int main() {
     GarageManager myShop;
@@ -20,36 +49,33 @@ int main() {
         std::cout << "2. View Garage Bays & Specs\n";
         std::cout << "3. Install Part Upgrade\n";
         std::cout << "4. Exit\n";
-        std::cout << "Choice: ";
 
-        // Basic input check for invalid non-number entries
-        if (!(std::cin >> choice)) {
-            std::cin.clear();
-            std::cin.ignore(1000, '\n');
-            std::cout << "\nInvalid input. Enter a number 1-4.\n";
-            System::Pause();
-            continue;
-        }
+        choice = GetValidInt("Choice: ");
 
         if (choice == 1) {
-            std::string modelName;
-            int horsepower;
+            System::ClearScreen();
+            System::PrintHeader("ADD CAR TO SERVICE BAY");
 
-            std::cout << "\nEnter car model: ";
-            std::cin.ignore(1000, '\n'); // Clear trailing newline from menu selection
+            std::string modelName;
+            std::cout << "Enter car model: ";
             std::getline(std::cin, modelName);
 
-            std::cout << "Enter base horsepower: ";
-            std::cin >> horsepower;
+            int horsepower = GetValidInt("Enter base horsepower: ");
 
             myShop.AddCar(modelName, horsepower);
             System::Pause();
         }
         else if (choice == 2) {
+            System::ClearScreen();
+            System::PrintHeader("GARAGE BAYS & SPECS");
+
             myShop.DisplayGarage();
             System::Pause();
         }
         else if (choice == 3) {
+            System::ClearScreen();
+            System::PrintHeader("INSTALL PART UPGRADE");
+
             if (myShop.GetGarageSize() == 0) {
                 std::cout << "\nNo cars available to upgrade!\n";
                 System::Pause();
@@ -57,21 +83,30 @@ int main() {
             }
 
             myShop.DisplayGarage();
-            std::cout << "\nSelect Bay Number: ";
-            int selectedBay;
-            std::cin >> selectedBay;
+            int selectedBay = GetValidInt("\nSelect Bay Number: ");
 
             myShop.DisplayShop();
-            std::cout << "\nSelect Part Number: ";
-            int selectedPart;
-            std::cin >> selectedPart;
+            int selectedPart = GetValidInt("\nSelect Part Number: ");
 
-            // Pass 1-based choices directly; GarageManager converts them to 0-based indexing
             myShop.InstallUpgrade(selectedBay, selectedPart);
             System::Pause();
         }
         else if (choice == 4) {
-            std::cout << "\nExiting shop terminal...\n";
+            System::ClearScreen();
+            System::PrintHeader("EXIT PROGRAM");
+
+            std::cout << "Are you sure you want to exit? (y/n): ";
+            char confirm = 'n';
+            std::cin >> confirm;
+
+            if (confirm == 'y' || confirm == 'Y') {
+                std::cout << "\nExiting shop terminal... Goodbye!\n";
+            }
+            else {
+                choice = 0;
+                std::cout << "\nReturning to main menu...\n";
+                System::Pause();
+            }
         }
         else {
             std::cout << "\nInvalid choice. Please pick 1 through 4.\n";
