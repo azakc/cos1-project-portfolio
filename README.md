@@ -128,4 +128,16 @@ Continue making atomic Git commits as new functionality is implemented.
 
 ### Week 4
 
-My final stand-up...
+I standardized screen navigation using custom header banners (System::PrintHeader), added ClearScreen calls between menu transitions, and wired up an exit confirmation sequence to ensure smooth console UX.
+
+🌵 Challenges
+
+My biggest hurdle was managing raw pointers and dynamic vector safety across garage bays and shop inventory. I resolved this by enforcing strict 0-based boundary checks and adding explicit destructor cleanup to eliminate memory leaks.
+
+🎭 Biggest Takeaway
+
+My key insight was mastering OOP pointer management alongside input validation—ensuring the CLI terminal stays stable even when handling invalid user input.
+
+🔮 Future Development
+
+If I kept expanding this project, I’d implement file I/O to persist garage state across sessions and build out dynamic inventory sorting for shop parts.
