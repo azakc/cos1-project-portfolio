@@ -32,7 +32,6 @@ int GetValidInt(const std::string& prompt) {
     }
 }
 
-
 int main() {
     GarageManager myShop;
 
@@ -54,9 +53,11 @@ int main() {
         choice = GetValidInt("Choice: ");
 
         if (choice == 1) {
-            std::string modelName;
+            System::ClearScreen();
+            System::PrintHeader("ADD CAR TO SERVICE BAY");
 
-            std::cout << "\nEnter car model: ";
+            std::string modelName;
+            std::cout << "Enter car model: ";
             std::getline(std::cin, modelName);
 
             int horsepower = GetValidInt("Enter base horsepower: ");
@@ -65,10 +66,12 @@ int main() {
             System::Pause();
         }
         else if (choice == 2) {
+            System::ClearScreen();
             myShop.DisplayGarage();
             System::Pause();
         }
         else if (choice == 3) {
+            System::ClearScreen();
             if (myShop.GetGarageSize() == 0) {
                 std::cout << "\nNo cars available to upgrade!\n";
                 System::Pause();
@@ -86,6 +89,7 @@ int main() {
             System::Pause();
         }
         else if (choice == 4) {
+            System::ClearScreen();
             std::cout << "\nExiting shop terminal...\n";
         }
         else {
