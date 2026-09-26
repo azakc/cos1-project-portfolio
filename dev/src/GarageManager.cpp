@@ -21,6 +21,11 @@ GarageManager::~GarageManager() {
         delete car;
     }
     bays.clear();
+
+    for (Part* part : shopParts) {
+        delete part;
+    }
+    shopParts.clear();
 }
 
 void GarageManager::AddCar(const std::string& model, int hp) {

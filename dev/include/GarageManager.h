@@ -8,7 +8,7 @@ class GarageManager {
 private:
     static constexpr size_t MAX_BAYS = 5;
     std::vector<Car*> bays;
-    std::vector<Part> shopParts;
+    std::vector<Part*> shopParts;
 
 public:
     GarageManager();
