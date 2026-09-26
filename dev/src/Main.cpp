@@ -63,8 +63,6 @@ int main() {
             int horsepower = GetValidInt("Enter base horsepower: ");
 
             myShop.AddCar(modelName, horsepower);
-
-            // Return to main menu prompt
             System::Pause();
         }
         else if (choice == 2) {
@@ -72,8 +70,6 @@ int main() {
             System::PrintHeader("GARAGE BAYS & SPECS");
 
             myShop.DisplayGarage();
-
-            // Return to main menu prompt
             System::Pause();
         }
         else if (choice == 3) {
@@ -93,18 +89,27 @@ int main() {
             int selectedPart = GetValidInt("\nSelect Part Number: ");
 
             myShop.InstallUpgrade(selectedBay, selectedPart);
-
-            // Return to main menu prompt
             System::Pause();
         }
         else if (choice == 4) {
             System::ClearScreen();
-            std::cout << "\nExiting shop terminal...\n";
+            System::PrintHeader("EXIT PROGRAM");
+
+            std::cout << "Are you sure you want to exit? (y/n): ";
+            char confirm = 'n';
+            std::cin >> confirm;
+
+            if (confirm == 'y' || confirm == 'Y') {
+                std::cout << "\nExiting shop terminal... Goodbye!\n";
+            }
+            else {
+                choice = 0;
+                std::cout << "\nReturning to main menu...\n";
+                System::Pause();
+            }
         }
         else {
             std::cout << "\nInvalid choice. Please pick 1 through 4.\n";
-
-            // Pause before clearing on invalid entry
             System::Pause();
         }
     }
