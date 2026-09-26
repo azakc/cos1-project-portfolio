@@ -10,3 +10,5 @@ public:
     static void Pause();
     static void PrintHeader(const std::string& title);
 };
+
+#endif
