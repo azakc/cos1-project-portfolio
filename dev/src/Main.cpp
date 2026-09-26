@@ -63,15 +63,23 @@ int main() {
             int horsepower = GetValidInt("Enter base horsepower: ");
 
             myShop.AddCar(modelName, horsepower);
+
+            // Return to main menu prompt
             System::Pause();
         }
         else if (choice == 2) {
             System::ClearScreen();
+            System::PrintHeader("GARAGE BAYS & SPECS");
+
             myShop.DisplayGarage();
+
+            // Return to main menu prompt
             System::Pause();
         }
         else if (choice == 3) {
             System::ClearScreen();
+            System::PrintHeader("INSTALL PART UPGRADE");
+
             if (myShop.GetGarageSize() == 0) {
                 std::cout << "\nNo cars available to upgrade!\n";
                 System::Pause();
@@ -84,8 +92,9 @@ int main() {
             myShop.DisplayShop();
             int selectedPart = GetValidInt("\nSelect Part Number: ");
 
-            // Pass 1-based choices directly; GarageManager converts them to 0-based indexing
             myShop.InstallUpgrade(selectedBay, selectedPart);
+
+            // Return to main menu prompt
             System::Pause();
         }
         else if (choice == 4) {
@@ -94,6 +103,8 @@ int main() {
         }
         else {
             std::cout << "\nInvalid choice. Please pick 1 through 4.\n";
+
+            // Pause before clearing on invalid entry
             System::Pause();
         }
     }
