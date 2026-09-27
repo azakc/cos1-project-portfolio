@@ -1,25 +1,3 @@
-# 🚀 Welcome to Project & Portfolio!
-
-This repository will be used to keep track of research and development conducted in this class. Follow the instructions below to get started.
-cos
-### Getting Started
-
-**1.** Review the [About](./docs/01_about/README.md) README and all of the links it provides.
-
-**2.** Review the documentation and [Getting Started](./docs/02_getting_started/README.md) steps in this repository's docs folder.
-
-**3.** Attend the first Live Lecture to see a live setup demo. If you are unable to attend, make sure to watch the archive.
-
-### Next Steps...
-
-After completing the above steps, feel free to begin updating this readme where indicated below. Remember to update this document each week to receive proper credit for the weekly Milestone assignment.
-
-<br>
-
-> ❗️ &nbsp; Now that you have read to this point, go ahead and delete this sentence and everything above it.
-
-<br>
-
 # Project & Portfolio 1
 
 ### Student First & Last Name
@@ -128,16 +106,21 @@ Continue making atomic Git commits as new functionality is implemented.
 
 ### Week 4
 
-I standardized screen navigation using custom header banners (System::PrintHeader), added ClearScreen calls between menu transitions, and wired up an exit confirmation sequence to ensure smooth console UX.
+⚙️ **Overview - What I worked on this past week**
 
-🌵 Challenges
+* Standardized screen navigation using custom header banners (`System::PrintHeader`).
+* Added `ClearScreen` calls between menu transitions and wired up an exit confirmation sequence to ensure a smooth console UX.
 
-My biggest hurdle was managing raw pointers and dynamic vector safety across garage bays and shop inventory. I resolved this by enforcing strict 0-based boundary checks and adding explicit destructor cleanup to eliminate memory leaks.
+🌵 **Challenges - What problems did I have & how I'm addressing them**
 
-🎭 Biggest Takeaway
+* **Challenge:** Managing raw pointers and dynamic vector safety across garage bays and shop inventory[cite: 4].
+* **Resolution:** Enforced strict 0-based boundary checks and added explicit destructor cleanup to eliminate memory leaks.
 
-My key insight was mastering OOP pointer management alongside input validation—ensuring the CLI terminal stays stable even when handling invalid user input.
+🏆 **Accomplishments - What is something I "leveled up" on this week**
 
-🔮 Future Development
+* Mastered object-oriented pointer management alongside robust input validation, ensuring CLI terminal stability when handling invalid user input.
 
-If I kept expanding this project, I’d implement file I/O to persist garage state across sessions and build out dynamic inventory sorting for shop parts.
+🔮 **Next Steps & Future Development**
+
+* Implement file I/O operations to persist garage state across application sessions.
+* Build out dynamic inventory sorting algorithms for shop parts.
