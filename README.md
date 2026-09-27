@@ -113,7 +113,7 @@ Continue making atomic Git commits as new functionality is implemented.
 
 🌵 **Challenges - What problems did I have & how I'm addressing them**
 
-* **Challenge:** Managing raw pointers and dynamic vector safety across garage bays and shop inventory[cite: 4].
+* **Challenge:** Managing raw pointers and dynamic vector safety across garage bays and shop inventory.
 * **Resolution:** Enforced strict 0-based boundary checks and added explicit destructor cleanup to eliminate memory leaks.
 
 🏆 **Accomplishments - What is something I "leveled up" on this week**
